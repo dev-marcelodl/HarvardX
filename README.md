@@ -1,8 +1,8 @@
 ## HarvardX: CS50's Web Programming with Python and JavaScript
 
-### Course's link
+### Course's Certified
 
-See [here](https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript).
+See [here]([https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript](https://courses.edx.org/certificates/2ce31451e0dc406dabe116c6d1ffb10c).
 
 ### Final project
 
@@ -14,7 +14,7 @@ My projects created for each exam in the HarvardX Python course
   - `mail` - A client mail (webmail).
   - `network` - A social media.	
   - `search` - Simple search clone Google Page.
-  - `wiki` - Similar a wikipédia. 
+  - `wiki` - Similar a wikipÃ©dia. 
   
 #### Installation
 
