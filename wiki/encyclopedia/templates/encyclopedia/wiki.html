@@ -1,0 +1,21 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block topmenu %}
+<div style="text-align:right; margin-right: 20px;" ><a href="{% url 'wiki:editpage' title %}">Edit Page</a></div>                                
+<hr/>
+{% endblock %}
+
+
+{% block body %}
+
+    {% if entry == None %}
+        <h2>Page Not Found</h2>
+    {% else %}
+        {{ entry|safe|escape }}  
+    {% endif %}    
+
+{% endblock %}

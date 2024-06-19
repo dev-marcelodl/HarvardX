@@ -1,0 +1,26 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    {{ title }}
+{% endblock %}
+
+{% block body %}
+
+    {% if alert_flag %}
+        <script>alert("This page already exists: {{ form.title.value }}")</script>  
+    {% endif %}
+
+    <h2>Create New Page</h2>
+    
+    <form action="{% url 'wiki:newpage' %}" method="POST">
+        {% csrf_token %}  
+        Title<br>
+        {{ form.title }} 
+        <br><br> 
+        Content<br>   
+        {{ form.content }} 
+        <br><br>
+        <input type="submit"  value="Save">
+    </form>
+    
+{% endblock %}

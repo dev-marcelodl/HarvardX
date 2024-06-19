@@ -1,0 +1,13 @@
+textarea {
+    min-height: 400px;
+}
+
+.bg-custom-1 {
+    background-color: rgb(219, 219, 219);
+}
+
+.card {
+    width: 80%;
+    margin: 1em;
+    background-color: rgb(236, 234, 234);
+}

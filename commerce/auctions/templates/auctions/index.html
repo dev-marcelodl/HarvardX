@@ -1,0 +1,26 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+    {% for auction in auctions %}
+        <div class="card flex-row">
+            <a href="{% url 'listing' auction.id %}">
+                <span class="link"></span>
+            </a>
+            {% if auction.image is not None  %}
+                <img style="width:150px; height: 100px; padding: 5px"  src="{{ auction.image }}" alt="{{ auction.title }}"  />
+            {% else %}
+                <img style="width:150px; height: 100px; padding: 5px"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png" alt="{{ auction.title }}"  />                
+            {% endif %}
+            <div >
+                <p style="font-size:12px;font-weight:bold;">{{ auction.category }} </p>
+                <p style="font-size:22px;font-weight:bold;">{{ auction.title }}</p>                
+                <p style="font-size:14px;margin-top: 10px;">{{ auction.description }} </p>
+                <p style="font-size:18px;margin-top: 10px;color: red;"><b>Price: ${{ auction.price }} </b></p>
+                <p style="font-size:12px;margin-top: 10px;">Created: {{ auction.created }}</p>
+            </div>
+        </div>
+    {% empty %}
+        <h5>No auctions available at the moment</h5>
+    {% endfor %}
+
+{% endblock %}

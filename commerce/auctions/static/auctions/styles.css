@@ -1,0 +1,78 @@
+body {
+    padding: 10px;
+    background: #d9fcf4;
+    color: #085041;
+}
+
+p {
+    padding: 0px;
+    margin: 0px;
+    margin-left: 10px;
+}
+
+
+.margin_left {
+    margin-left: 10px;
+}
+
+.header {
+    padding: 15px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 30px;
+  }
+
+.header2 {
+    padding: 3px;
+    text-align: center;
+    background: #1abc9c;
+    color: white;
+    font-size: 14px;
+  }  
+
+.menu {
+    text-align: center;
+    background: #8af0db;
+    color: white;
+    font-size: 12px;
+  }  
+
+  a:link {
+    color: rgb(0, 0, 0);
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:visited {
+    color:  rgb(0, 0, 0);
+    background-color: transparent;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    color:  rgb(35, 61, 131);
+    background-color: rgb(117, 247, 193);
+    text-decoration: none;
+  }
+  
+  a:active {
+    color:  rgb(230, 255, 6);
+    background-color: transparent;
+    text-decoration: none;
+  }  
+
+  .btn-primary {
+    margin: 10px;
+    text-align: center;
+    background: #8af0db;
+    stroke: #1abc9c;
+    color: rgb(35, 61, 131);
+    font-size: 12px;
+  }  
+
+  .form-group {
+    margin: 10px;
+  }
+
+  

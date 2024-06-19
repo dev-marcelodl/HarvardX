@@ -1,0 +1,100 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+    <div class="card container flex-row">
+
+        {% if auction.image is not None  %}
+            <img style="width:250px; height: 200px; padding: 5px"  src="{{ auction.image }}" alt="{{ auction.title }}"  />
+        {% else %}
+            <img style="width:250px; height: 200px; padding: 5px"  src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png" alt="{{ auction.title }}"  />                
+        {% endif %}
+        <div >
+            <a style="font-size:12px;font-weight:bold;margin-left: 10px;" href="{% url 'category_listing' auction.category %}">{{  auction.category  }}</a>            
+            <p style="font-size:22px;font-weight:bold;">{{ auction.title }}</p>
+            <p style="font-size:14px;margin-top: 10px;">{{ auction.description }} </p>
+            <p style="font-size:18px;margin-top: 10px;color: red;"><b>Start Price: ${{ auction.price|stringformat:".2f" }} </b></p>
+            
+            {% if max_bid == 0 %}         
+                <p style="font-size:18px;color: red;font-weight:bold;">Highest bid: You can be the first!</p>
+            {% else %}
+                <p style="font-size:18px;color: red;font-weight:bold;">Highest bid: ${{ max_bid|stringformat:".2f" }}</p>
+            {% endif %}
+                       
+            <p style="font-size:14px;font-weight:bold;margin-top: 15px;">Views:{{ auction.views }}</p>
+
+            <p style="font-size:12px;font-weight:bold;margin-top: 15px;">Created:{{ auction.created }}</p>
+              
+            {% if user.is_authenticated %}                             
+                {# auction user owner, list all users watch #}
+                {% if auction.user|stringformat:'s' == user.username|stringformat:'s' %} 
+                    
+                    {% if auction.enabled %}   
+                        <div class="container">
+                            <form  action="{% url 'auction_close' auction.id  %}" method="post" >
+                                {% csrf_token %}                             
+                                <button class="btn btn-primary my-4" type="submit">CLOSE BID</button>
+                            </form>
+                        </div> 
+                    {% endif %}          
+
+                    <p style="font-size:12px;font-weight:bold;margin-top: 15px;">Who is watching</p>                       
+                    {% for u_watch in users_watch %}                            
+                        <p style="font-size:14px">{{ u_watch }}</p>   
+                    {% endfor %}                
+                {# no owner auction, get watch #}                           
+                {% else %} 
+                   
+                    {% if auction.enabled %}   
+
+                        <div class="container">
+                            <form  action="{% url 'bid_item' auction.id  %}" method="post" >
+                                {% csrf_token %} 
+                                <input type="number" name="bid_value" min="{{ min_bid }}" step="0.01" required />                                                    
+                                <button class="btn btn-primary my-4" type="submit">SEND YOUR BID</button>
+                            </form>
+                        </div>   
+
+                        <div class="container">
+                            <form  action="{% url 'comment_auction' auction.id  %}" method="post" >
+                                {% csrf_token %} 
+                                <input type="text" name="comment_value"  required/>                                                    
+                                <button class="btn btn-primary my-4" type="submit">ADD COMMENT</button>
+                            </form>
+                        </div>  
+
+                        {% if is_watchlist %}            
+                            <div class="container">
+                                <form  action="{% url 'remove_watchlist' auction.id  %}" method="post" >
+                                    {% csrf_token %}                                
+                                    <button class="btn btn-primary my-4" type="submit">REMOVE WACHTLIST</button>
+                                </form>
+                            </div>                        
+                        {% else %}    
+                        <div class="container">
+                            <form  action="{% url 'add_watchlist' auction.id %}" method="post" >
+                                {% csrf_token %}                                
+                                <button class="btn btn-primary my-4" type="submit">ADD WACHTLIST</button>
+                            </form>
+                        </div>
+                        {% endif %}      
+                    {% endif %}
+                {% endif %}       
+            {% endif %}   
+            
+            <p style="font-size:14px;font-weight:bold;margin-top: 15px">COMMENTS</p> 
+                                                  
+            {% for u_comment in comments %}                            
+                <p style="font-size:14px;margin-top: 15px;">{{ u_comment.comment }}</p>
+                <p style="font-size:14px">{{ u_comment.user }} -  {{ u_comment.created }}</p>
+            {% empty %}   
+                <p style="font-size:14px">No one has commented yet</p>                           
+            {% endfor %}   
+
+        </div>
+
+        
+           
+    </div>               
+    
+{% endblock %}
