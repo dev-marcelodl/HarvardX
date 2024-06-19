@@ -2,7 +2,7 @@
 
 ### Course's Certified
 
-See [here]([https://www.edx.org/course/cs50s-web-programming-with-python-and-javascript](https://courses.edx.org/certificates/2ce31451e0dc406dabe116c6d1ffb10c).
+See [here](https://courses.edx.org/certificates/2ce31451e0dc406dabe116c6d1ffb10c)
 
 ### Final project
 
